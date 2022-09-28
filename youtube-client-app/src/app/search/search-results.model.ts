@@ -1,4 +1,4 @@
-import { SearchItem } from './search-item.model';
+import { SearchItemInterface } from './search-item.model';
 
 export interface SearchResults {
   kind: string,
@@ -7,5 +7,5 @@ export interface SearchResults {
     totalResults: number,
     resultsPerPage: number
   },
-  items: SearchItem[]
+  items: SearchItemInterface[]
 }
