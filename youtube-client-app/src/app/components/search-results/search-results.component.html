@@ -3,6 +3,6 @@
     Start your Search!
   </p>
   <div class="search-items">
-    <app-search-item></app-search-item>
+    <app-search-item *ngFor="let result of searchResults" [searchItem]="result"></app-search-item>
   </div>
 </div>

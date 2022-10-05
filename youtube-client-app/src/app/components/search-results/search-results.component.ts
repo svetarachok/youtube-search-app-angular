@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchResults } from 'src/app/models/search-results.model';
+import { SearchItemInterface } from 'src/app/models/search-item.model';
+import data from '../../models/data.json';
 
 @Component({
   selector: 'app-search-results',
@@ -8,10 +9,12 @@ import { SearchResults } from 'src/app/models/search-results.model';
 })
 export class SearchResultsComponent implements OnInit {
 
-  public searchResults!: SearchResults;
+  public searchResults: SearchItemInterface[] = data.items;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
-  constructor() { }
+  constructor() {
+    console.log(data);
+  }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
