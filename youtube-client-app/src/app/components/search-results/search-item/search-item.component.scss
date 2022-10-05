@@ -1,0 +1,31 @@
+.search-card {
+  width: 20%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  border-radius: 5px;
+  background-color: #f3f2f2;
+  .card-title {
+    text-align: center;
+  }
+  .search-card_icons {
+    display: flex;
+    justify-content: space-evenly;
+    .card-icon {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+  .card-btn {
+    width: 35%;
+    margin: 0 auto;
+  }
+  .card-footer-bar {
+    height: 5px;
+    background-color: aqua;
+    margin: 0 -1.5rem -1.5rem;
+  }
+}

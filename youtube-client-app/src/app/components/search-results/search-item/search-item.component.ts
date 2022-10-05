@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SearchItemInterface } from 'src/app/models/search-item.model';
 
 @Component({
@@ -7,7 +7,7 @@ import { SearchItemInterface } from 'src/app/models/search-item.model';
   styleUrls: ['./search-item.component.scss'],
 })
 export class SearchItemComponent implements OnInit {
-  public searchItem!: SearchItemInterface;
+  @Input() searchItem!: SearchItemInterface;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
   constructor() { }

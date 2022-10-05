@@ -8,7 +8,7 @@ import { SearchResults } from 'src/app/models/search-results.model';
 })
 export class SearchResultsComponent implements OnInit {
 
-  public searchResults!: SearchResults;
+  public searchResults: SearchResults;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
   constructor() { }

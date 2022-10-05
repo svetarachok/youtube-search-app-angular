@@ -5,17 +5,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .header-center {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .search-form-field {
+      width: 400px;
+    }
+  }
 }
 
-.search-form-field {
-  width: 300px;
-}
 
 .user {
   display: flex;
   align-items: center;
   .user-name {
     padding-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+.header-filters {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 0 auto;
+  .header-filter_text {
+    margin-bottom: 0;
+  }
+  .filter-text-label {
+    color: #3f51b5;
+    font-size: 14px;
+    font-weight: 500;
     margin-bottom: 0;
   }
 }
