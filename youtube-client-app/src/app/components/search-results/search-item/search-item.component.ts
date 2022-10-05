@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchItemInterface } from 'src/app/models/search-item.model';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  selector: 'app-search-item',
+  templateUrl: './search-item.component.html',
+  styleUrls: ['./search-item.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchItemComponent implements OnInit {
+  public searchItem!: SearchItemInterface;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
   constructor() { }

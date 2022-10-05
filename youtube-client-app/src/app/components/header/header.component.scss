@@ -1,0 +1,22 @@
+.header-container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-form-field {
+  width: 300px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  .user-name {
+    padding-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+

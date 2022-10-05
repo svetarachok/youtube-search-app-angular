@@ -3,22 +3,32 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { SearchComponent } from './search/search.component';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
-import { SearchItemComponent } from './search/search-item/search-item.component';
-
+import { HeaderComponent } from './components/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { SearchItemComponent } from './components/search-results/search-item/search-item.component';
+ 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchComponent,
     SearchResultsComponent,
     SearchItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
