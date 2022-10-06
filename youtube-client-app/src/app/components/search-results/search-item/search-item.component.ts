@@ -24,7 +24,6 @@ export class SearchItemComponent implements OnInit {
 
   setBgColor(): string {
     const postData = new Date(this.searchItem.snippet.publishedAt);
-    console.log(postData);
     if (postData <= new Date(nowInSeconds) && postData > new Date(DateMarks.upTo7)) {
       this.color = 'blue';
     } 

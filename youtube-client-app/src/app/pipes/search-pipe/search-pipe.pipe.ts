@@ -9,8 +9,8 @@ export class SearchPipe implements PipeTransform {
   transform(searchResults: SearchItemInterface[], inputData: string): SearchItemInterface[] {
     return searchResults.filter((searchRes) => {
       const searchList = searchRes.snippet.title.toLowerCase();
-      console.log(searchList.includes(inputData.toLowerCase()));
-      searchList.includes(inputData.toLowerCase());
+      const data = inputData.toLowerCase();
+      return searchList.includes(data);
     });
   }
 }

@@ -39,7 +39,7 @@ import { FilterBarComponent } from './components/header/filter-bar/filter-bar.co
     MatButtonModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [SearchPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

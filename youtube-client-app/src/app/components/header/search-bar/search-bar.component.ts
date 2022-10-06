@@ -13,5 +13,6 @@ export class SearchBarComponent {
 
   onSearch() {
     this.search.emit(this.searchData);
+    console.log('In serachBar: ', this.searchData);
   }
 }

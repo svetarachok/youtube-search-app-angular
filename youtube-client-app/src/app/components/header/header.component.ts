@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +7,13 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
 
-  public searchDataPassed!: string;
+  // @Input() searchDataPassed!: string;
 
   @Input() isClosed = true;
+
+  @Output() passToApp = new EventEmitter();
   
-  // toggleFilerBar(isClosed: Event) {
-  //   console.log(isClosed);
-  //   isClosed = !isClosed;
-  // }
+  passSearchDataFromHeader(searchDataPassed: string) {
+    this.passToApp.emit(searchDataPassed);
+  }
 }

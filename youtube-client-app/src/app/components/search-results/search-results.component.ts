@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { SearchItemInterface } from 'src/app/models/search-item.model';
+import { SearchPipe } from 'src/app/pipes/search-pipe/search-pipe.pipe';
 import data from '../../models/data.json';
 
 @Component({
@@ -7,25 +8,26 @@ import data from '../../models/data.json';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnChanges {
 
   public searchResults: SearchItemInterface[] = data.items;
 
-  public filteredResults = this.searchResults;
+  public filteredResults: SearchItemInterface[] = this.searchResults;
+ 
+  @Input() searchDataRecieved: string = '';
 
-  @Input() searchDataPassed = '';
+  constructor(private search: SearchPipe) {
 
-  constructor() {
-    console.log(this.searchDataPassed);
   }
 
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit(): void {
+  ngOnChanges() {
+    console.log('Что ищем: ', this.searchDataRecieved);
+    this.updateSearchResults();
+    console.log(this.filteredResults);
   }
 
-  // onSearch(searchData: string) {
-  //   this.filteredResults = this.searchPipe.transform(this.searchResults, searchData);
-  // }
-
+  updateSearchResults() {
+    this.filteredResults = this.search.transform(this.searchResults, this.searchDataRecieved);
+  }
 
 }
