@@ -1,0 +1,16 @@
+.header-filters {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 0 auto;
+  .header-filter_text {
+    margin-bottom: 0;
+  }
+  .filter-text-label {
+    color: #3f51b5;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+}

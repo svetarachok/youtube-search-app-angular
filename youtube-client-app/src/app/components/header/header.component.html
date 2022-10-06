@@ -2,13 +2,8 @@
   <mat-toolbar-row class="header-container">    
     <img src="../../assets/youtube-app-logo.png" alt="Logo">
     <div class="header-center">
-      <div class="search-form">
-        <mat-form-field class="search-form-field">
-          <input matInput type="text">
-        </mat-form-field>  
-        <button type="submit" mat-raised-button color="primary">Search</button>
-      </div>
-      <button mat-raised-button color="primary">
+      <app-search-bar  (search)="searchDataPassed = $event"></app-search-bar>
+      <button mat-raised-button color="primary" (click)="isClosed = !isClosed">
         <mat-icon>tune</mat-icon>
       </button>
     </div>
@@ -19,15 +14,7 @@
       </button>
     </div>
   </mat-toolbar-row>
-  <mat-toolbar-row>
-    <div class="header-filters">
-      <p class="header-filter_text">Sorting by:</p>
-      <button mat-button color="primary">date</button>
-      <button mat-button color="primary">count of views</button>
-      <p class="filter-text-label">by word of sentence</p>
-      <mat-form-field class="filter-field">
-        <input matInput type="text">
-      </mat-form-field> 
-    </div>
+  <mat-toolbar-row  [ngClass]="{'closed': isClosed}">
+    <app-filter-bar class="filter-bar"></app-filter-bar>
   </mat-toolbar-row>
 </mat-toolbar>

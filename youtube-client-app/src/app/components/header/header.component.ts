@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
-  constructor() { }
+  public searchDataPassed!: string;
 
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit(): void {
-  }
-
+  @Input() isClosed = true;
+  
+  // toggleFilerBar(isClosed: Event) {
+  //   console.log(isClosed);
+  //   isClosed = !isClosed;
+  // }
 }

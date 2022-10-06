@@ -10,10 +10,13 @@ export class SearchItemComponent implements OnInit {
   @Input() searchItem!: SearchItemInterface;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
-  constructor() { }
+  constructor() {
+    console.log(this.searchItem);
+  }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
+    console.log(this.searchItem);
   }
 
 }
