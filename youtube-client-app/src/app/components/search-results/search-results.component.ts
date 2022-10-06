@@ -1,6 +1,8 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
+// import { BehaviorSubject } from 'rxjs';
 import { SearchItemInterface } from 'src/app/models/search-item.model';
 import { SearchPipe } from 'src/app/pipes/search-pipe/search-pipe.pipe';
+import { SearchService } from 'src/app/services/search.service';
 import data from '../../models/data.json';
 
 @Component({
@@ -8,26 +10,16 @@ import data from '../../models/data.json';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnChanges {
+export class SearchResultsComponent {
 
   public searchResults: SearchItemInterface[] = data.items;
 
-  public filteredResults: SearchItemInterface[] = this.searchResults;
- 
-  @Input() searchDataRecieved: string = '';
-
-  constructor(private search: SearchPipe) {
-
+  public get filteredResults() {
+    return this.searchService.filteredData.value;
   }
 
-  ngOnChanges() {
-    console.log('Что ищем: ', this.searchDataRecieved);
-    this.updateSearchResults();
-    console.log(this.filteredResults);
-  }
+  constructor(private search: SearchPipe, private searchService: SearchService) {
 
-  updateSearchResults() {
-    this.filteredResults = this.search.transform(this.searchResults, this.searchDataRecieved);
   }
 
 }

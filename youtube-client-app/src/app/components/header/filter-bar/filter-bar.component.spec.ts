@@ -8,9 +8,9 @@ describe('FilterBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterBarComponent ]
+      declarations: [ FilterBarComponent ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FilterBarComponent);
     component = fixture.componentInstance;

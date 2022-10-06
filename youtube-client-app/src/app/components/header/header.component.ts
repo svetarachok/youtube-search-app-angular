@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +7,6 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
 
-  // @Input() searchDataPassed!: string;
-
   @Input() isClosed = true;
 
-  @Output() passToApp = new EventEmitter();
-  
-  passSearchDataFromHeader(searchDataPassed: string) {
-    this.passToApp.emit(searchDataPassed);
-  }
 }
