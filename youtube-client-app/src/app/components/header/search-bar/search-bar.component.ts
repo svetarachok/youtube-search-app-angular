@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -9,15 +9,12 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class SearchBarComponent {
 
-  @Output() search = new EventEmitter<string>();
-
   public searchData = '';
 
   constructor(private searchService: SearchService) {
   }
 
   onSearch() {
-    this.search.emit(this.searchData);
     this.searchService.searchData(this.searchData);
   }
 
