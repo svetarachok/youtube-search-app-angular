@@ -29,5 +29,4 @@ export class FilterBarComponent {
     console.log(input);
     this.sortService.searchByInput(input);
   }
-
 }

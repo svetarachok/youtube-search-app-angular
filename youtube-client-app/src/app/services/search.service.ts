@@ -18,7 +18,8 @@ export class SearchService {
     this.filteredData.next(this.data.filter((searchRes) => {
       const searchList = searchRes.snippet.title.toLowerCase();
       return searchList.includes(value.toLowerCase());
-    })); 
+    }));
+    this.sortedData = this.filteredData.value;
   }
 
   sortByDate(ascending: boolean) {
@@ -39,17 +40,10 @@ export class SearchService {
   }
   
   searchByInput(input: string) {
-    if (input !== '') {
-      this.sortedData = this.filteredData.value;
-      this.sortedData.filter((searchRes) => {
-        const searchList = searchRes.snippet.title.toLowerCase();
-        console.log(searchList.includes(input.toLowerCase()));
-        return searchList.includes(input.toLowerCase());
-      });
-      console.log(this.sortedData);
-      this.filteredData.next(this.sortedData);
-    } else {
-      this.filteredData.next(this.filteredData.value);
-    }
+    this.filteredData.next(this.sortedData.filter((searchRes) => {
+      const searchList = searchRes.snippet.title.toLowerCase();
+      return searchList.includes(input.toLowerCase());
+    }));
   }
 }
+ 

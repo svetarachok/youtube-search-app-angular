@@ -18,4 +18,15 @@ export class SearchBarComponent {
     this.searchService.searchData(this.searchData);
   }
 
+  onClear() {
+    this.searchData = '';
+  }
+
+  onEnterPressedAtSearch(e: KeyboardEvent) {
+    console.log(e);
+    if (e.key === 'Enter') {
+      this.onSearch();
+    }
+  }
+
 }
