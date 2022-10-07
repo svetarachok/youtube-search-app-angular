@@ -5,13 +5,16 @@ import { SearchService } from 'src/app/services/search.service';
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
-  // providers: [SearchService],
 })
 export class SearchBarComponent {
 
   public searchData = '';
 
   constructor(private searchService: SearchService) {
+  }
+
+  startSearch() {
+    this.searchService.startedSearch = true;
   }
 
   onSearch() {
@@ -22,10 +25,12 @@ export class SearchBarComponent {
     this.searchData = '';
   }
 
-  onEnterPressedAtSearch(e: KeyboardEvent) {
-    console.log(e);
+  onKeyupAtSearch(e: KeyboardEvent) {
     if (e.key === 'Enter') {
       this.onSearch();
+    }
+    if (!this.searchData) {
+      this.searchService.updateSearch();
     }
   }
 

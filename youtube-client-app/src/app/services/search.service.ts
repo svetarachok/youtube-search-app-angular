@@ -14,12 +14,18 @@ export class SearchService {
 
   sortedData: SearchItemInterface[] = [];
 
+  startedSearch = false;
+
   searchData(value: string) {
     this.filteredData.next(this.data.filter((searchRes) => {
       const searchList = searchRes.snippet.title.toLowerCase();
       return searchList.includes(value.toLowerCase());
     }));
     this.sortedData = this.filteredData.value;
+  }
+
+  updateSearch() {
+    this.filteredData = new BehaviorSubject(this.data);
   }
 
   sortByDate(ascending: boolean) {
