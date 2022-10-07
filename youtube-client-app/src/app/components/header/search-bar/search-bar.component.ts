@@ -20,11 +20,7 @@ export class SearchBarComponent {
   onSearch() {
     this.searchService.searchData(this.searchData);
   }
-
-  onClear() {
-    this.searchData = '';
-  }
-
+  
   onKeyupAtSearch(e: KeyboardEvent) {
     if (e.key === 'Enter') {
       this.onSearch();
