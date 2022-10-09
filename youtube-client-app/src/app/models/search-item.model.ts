@@ -16,7 +16,7 @@ export interface SearchItemInterface {
     },
     channelTitle: string,
     tags: string[],
-    categoryId: number,
+    categoryId: string,
     liveBroadcastContent: string,
     localized: SearchItemLocalised,
     defaultAudioLanguage: string
@@ -24,21 +24,21 @@ export interface SearchItemInterface {
   statistics: SearchItemStatistics
 }
 
-interface SearchItemTumbnail {
+export interface SearchItemTumbnail {
   url: string,
   width: number,
-  heigh: number,
+  height: number,
 }
 
-interface SearchItemLocalised {
+export interface SearchItemLocalised {
   title: string,
   description: string
 }
 
-interface SearchItemStatistics {
-  viewCount: number,
-  likeCount: number,
-  favoriteCount: number,
-  dislikeCount: number,
-  commentCount: number
+export interface SearchItemStatistics {
+  viewCount: string,
+  likeCount: string,
+  favoriteCount: string,
+  dislikeCount: string,
+  commentCount: string
 }

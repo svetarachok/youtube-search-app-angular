@@ -1,0 +1,9 @@
+<div class="header-filters">
+  <p class="header-filter_text">Sorting by:</p>
+  <button mat-button color="primary" (click)="sortByDate()">date</button>
+  <button mat-button color="primary" (click)="sortByViews()">count of views</button>
+  <p class="filter-text-label">by word of sentence</p>
+  <mat-form-field class="filter-field">
+    <input matInput type="text" #word (keyup)="searchByInput(word.value)">
+  </mat-form-field> 
+</div>
