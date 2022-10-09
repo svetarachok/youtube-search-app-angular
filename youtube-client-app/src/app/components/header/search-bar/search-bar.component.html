@@ -1,6 +1,6 @@
 <div class="search-form">
   <mat-form-field class="search-form-field">
-    <input matInput type="text" [(ngModel)]="searchData" (keyup)="onKeyupAtSearch($event)" (focus)="startSearch()">
+    <input matInput type="text" [(ngModel)]="searchData" (keyup)="onKeyupAtSearch($event)">
   </mat-form-field>  
   <button type="submit" mat-raised-button color="primary" (click)="onSearch()">Search</button>
 </div>

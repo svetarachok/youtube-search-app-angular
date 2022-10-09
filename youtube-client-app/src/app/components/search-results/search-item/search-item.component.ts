@@ -12,12 +12,6 @@ export class SearchItemComponent implements OnInit {
 
   color: string = '';
 
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
-  constructor() {
-    
-  }
-
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
     this.color = this.setBgColor();
   }
@@ -26,21 +20,16 @@ export class SearchItemComponent implements OnInit {
     const postData = new Date(this.searchItem.snippet.publishedAt);
     if (postData <= new Date(nowInSeconds) && postData > new Date(DateMarks.upTo7)) {
       this.color = 'blue';
-    } 
-    
+    }    
     if (postData <= new Date(DateMarks.upTo7) && postData > new Date(DateMarks.upToMonth)) {
       this.color = 'green';
     } 
-    
     if (postData <= new Date(DateMarks.upToMonth) && postData > new Date(DateMarks.upTo6Month)) {
       this.color = 'yellow';
     } 
-    
     if (postData <= new Date(DateMarks.upTo6Month)) {
       this.color = 'red';
     }
-
     return this.color;
   }
-
 }

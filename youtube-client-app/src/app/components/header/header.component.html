@@ -1,20 +1,18 @@
-<mat-toolbar class="header">
-  <mat-toolbar-row class="header-container">    
-    <img src="../../assets/youtube-app-logo.png" alt="Logo">
-    <div class="header-center">
-      <app-search-bar></app-search-bar>
-      <button mat-raised-button color="primary" (click)="isClosed = !isClosed">
-        <mat-icon>tune</mat-icon>
-      </button>
-    </div>
-    <div class="user">
-      <p class="user-name">User Name</p>
-      <button mat-mini-fab color="primary">
-        <mat-icon aria-hidden="true" fontIcon="account_circle"></mat-icon>
-      </button>
-    </div>
-  </mat-toolbar-row>
-  <mat-toolbar-row  [ngClass]="{'closed': isClosed}">
-    <app-filter-bar class="filter-bar"></app-filter-bar>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div class="header-container">    
+  <img src="../../assets/youtube-app-logo.png" alt="Logo">
+  <div class="header-center">
+    <app-search-bar></app-search-bar>
+    <button mat-raised-button color="primary" (click)="isClosed = !isClosed" class="filters-btn">
+      <mat-icon>tune</mat-icon>
+    </button>
+  </div>
+  <div class="user">
+    <p class="user-name">User Name</p>
+    <button mat-mini-fab color="primary">
+      <mat-icon aria-hidden="true" fontIcon="account_circle"></mat-icon>
+    </button>
+  </div>
+</div>
+<div [ngClass]="{'closed': isClosed}">
+  <app-filter-bar class="filter-bar"></app-filter-bar>
+</div>

@@ -26,7 +26,6 @@ export class FilterBarComponent {
   }
 
   searchByInput(input: string) {
-    console.log(input);
     this.sortService.searchByInput(input);
   }
 }

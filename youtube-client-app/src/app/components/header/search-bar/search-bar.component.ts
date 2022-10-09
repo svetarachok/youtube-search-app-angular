@@ -12,12 +12,9 @@ export class SearchBarComponent {
 
   constructor(private searchService: SearchService) {
   }
-
-  startSearch() {
-    this.searchService.startedSearch = true;
-  }
-
+  
   onSearch() {
+    this.searchService.startedSearch = true;
     this.searchService.searchData(this.searchData);
   }
   

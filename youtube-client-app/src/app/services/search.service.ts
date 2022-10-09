@@ -29,7 +29,6 @@ export class SearchService {
   }
 
   sortByDate(ascending: boolean) {
-    console.log(ascending);
     if (ascending) {
       this.filteredData.value.sort((a, b) => Date.parse(a.snippet.publishedAt) - Date.parse(b.snippet.publishedAt));
     } else {

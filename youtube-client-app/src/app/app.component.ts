@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,13 +6,5 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'YouTube client app';
 
-  @Input() searchDataFurther = '';
-
-  @Output() passDataToList = new EventEmitter<string>();
-
-  passDataFromApp(data: string) {
-    this.searchDataFurther = data;
-  }
 }

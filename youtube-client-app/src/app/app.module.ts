@@ -13,7 +13,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { SearchPipe } from './pipes/search-pipe/search-pipe.pipe';
 import { SearchBarComponent } from './components/header/search-bar/search-bar.component';
 import { FilterBarComponent } from './components/header/filter-bar/filter-bar.component';
  
@@ -23,7 +22,6 @@ import { FilterBarComponent } from './components/header/filter-bar/filter-bar.co
     HeaderComponent,
     SearchResultsComponent,
     SearchItemComponent,
-    SearchPipe,
     SearchBarComponent,
     FilterBarComponent,
   ],
@@ -39,7 +37,6 @@ import { FilterBarComponent } from './components/header/filter-bar/filter-bar.co
     MatButtonModule,
     MatCardModule,
   ],
-  providers: [SearchPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
