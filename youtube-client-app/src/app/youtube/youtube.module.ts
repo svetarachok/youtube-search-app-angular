@@ -16,11 +16,10 @@ import { DetailedInformationComponent } from './pages/detailed-information/detai
     CommonModule,
     MaterialModule,
     RouterModule.forChild([
-      { path: '', component: SearchResultsComponent },
+      { path: '', component: SearchResultsComponent, children: [
+        { path: ':id', component: DetailedInformationComponent },
+      ] },
     ]),
-  ],
-  exports: [
-    SearchResultsComponent,
   ],
 })
 export class YoutubeModule {}
