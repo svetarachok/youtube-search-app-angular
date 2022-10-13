@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import data from '../models/data.json';
-import { SearchItemInterface } from '../models/search-item.model';
+import data from '../../models/data.json';
+import { SearchItemInterface } from '../../models/search-item.model';
 
 @Injectable({
   providedIn: 'root',

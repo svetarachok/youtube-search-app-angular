@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SearchItemInterface } from 'src/app/models/search-item.model';
+import { SearchItemInterface } from 'src/app/youtube/models/search-item.model';
 import { DateMarks, nowInSeconds } from '../../../utils/dateMarks';
 
 @Component({
