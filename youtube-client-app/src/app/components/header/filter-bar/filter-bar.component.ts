@@ -11,21 +11,21 @@ export class FilterBarComponent {
 
   ascendingViews: boolean = false;
 
-  constructor(private sortService: SearchService) {
+  constructor(private searchService: SearchService) {
 
   }
 
   sortByDate() {
     this.ascendingDate = !this.ascendingDate;
-    this.sortService.sortByDate(this.ascendingDate);
+    this.searchService.sortByDate(this.ascendingDate);
   }
 
   sortByViews() {
     this.ascendingViews = !this.ascendingViews;
-    this.sortService.sortByViewCount(this.ascendingViews);
+    this.searchService.sortByViewCount(this.ascendingViews);
   }
 
   searchByInput(input: string) {
-    this.sortService.searchByInput(input);
+    this.searchService.searchByInput(input);
   }
 }
