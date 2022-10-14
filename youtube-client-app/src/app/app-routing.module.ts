@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/search-results', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'search-results', 
     loadChildren: () =>
       import('./youtube/youtube.module').then(m => m.YoutubeModule),
+  },
+  {
+    path: 'login', 
+    loadChildren: () =>
+      import('./auth/auth.module').then(m => m.AuthModule),
   },
   { path: '**', component: NotFoundComponent },
 ];
