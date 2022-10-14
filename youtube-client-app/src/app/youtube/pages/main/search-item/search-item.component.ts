@@ -37,6 +37,6 @@ export class SearchItemComponent implements OnInit {
   }
 
   getMoreInfo() {
-    this.router.navigate(['/detailed-info', this.searchItem.id]);
+    this.router.navigate(['/search-results', this.searchItem.id]);
   }
 }

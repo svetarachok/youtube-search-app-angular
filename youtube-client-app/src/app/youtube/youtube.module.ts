@@ -16,11 +16,8 @@ import { DetailedInformationComponent } from './pages/detailed-information/detai
     CommonModule,
     MaterialModule,
     RouterModule.forChild([
-      { path: '', component: SearchResultsComponent, 
-        // children: [ 
-        //   { path: ':id', component: DetailedInformationComponent },
-        // ],
-      },
+      { path: '', component: SearchResultsComponent },
+      { path: ':id', component: DetailedInformationComponent },
     ]),
   ],
 })
