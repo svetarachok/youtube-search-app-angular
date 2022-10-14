@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SearchItemInterface } from 'src/app/youtube/models/search-item.model';
 import { DateMarks, nowInSeconds } from '../../../utils/dateMarks';
 
@@ -11,6 +12,8 @@ export class SearchItemComponent implements OnInit {
   @Input() searchItem!: SearchItemInterface;
 
   color: string = '';
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.color = this.setBgColor();
@@ -31,5 +34,9 @@ export class SearchItemComponent implements OnInit {
       this.color = 'red';
     }
     return this.color;
+  }
+
+  getMoreInfo() {
+    this.router.navigate(['/detailed-info', this.searchItem.id]);
   }
 }

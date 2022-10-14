@@ -3,6 +3,9 @@
     Start your Search!
   </ng-template>
   <div class="search-items" *ngIf="searchStarted; else searchText">
-    <app-search-item *ngFor="let result of filteredResults" [searchItem]="result" ></app-search-item>
+    <app-search-item
+    *ngFor="let result of filteredResults" 
+    [searchItem]="result"
+    ></app-search-item>
   </div>
 </div>

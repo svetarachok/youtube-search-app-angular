@@ -1,1 +1,28 @@
-<p>detailed-information works!</p>
+<div class="detailed-page">
+  <button mat-raised-button color="primary" class="back-btn" (click)="onBackClicked()">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <mat-card class="detailed-info">
+    <div class="detailed-info_container">
+      <div class="detailed-info_img">
+        <img [src]="dataItem.snippet.thumbnails.maxres.url" [alt]="dataItem.snippet.title">
+      </div>
+      <div class="detailed-info_data">
+        <div class="data_head">
+          <mat-card-title class="data_head_title">{{ dataItem.snippet.title }}</mat-card-title>
+          <mat-card-subtitle class="data_date">{{ itemDate }}</mat-card-subtitle>
+        </div>
+        <div class="data_description"></div>
+        <h2>Description:</h2>
+        <p>{{ dataItem.snippet.description}}</p>
+        <mat-card-actions class="data_icons">
+          <span class="card-icon"><mat-icon>visibility</mat-icon>{{ dataItem.statistics.viewCount }}</span>
+          <span class="card-icon"><mat-icon>favorite</mat-icon>{{ dataItem.statistics.likeCount }}</span>
+          <span class="card-icon"><mat-icon>thumb_down_alt</mat-icon>{{ dataItem.statistics.dislikeCount }}</span>
+          <span class="card-icon"><mat-icon>forum</mat-icon>{{ dataItem.statistics.commentCount }}</span>
+        </mat-card-actions>
+        <mat-card-footer class="card-footer"></mat-card-footer>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import data from '../../models/data.json';
 import { SearchItemInterface } from '../../models/search-item.model';
+import { DataService } from '../data-service/data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
 
-  data: SearchItemInterface[] = data.items;
+  data: SearchItemInterface[] = this.dataService.getData();
 
   filteredData: BehaviorSubject<SearchItemInterface[]> = new BehaviorSubject(this.data);
 
   sortedData: SearchItemInterface[] = [];
 
   startedSearch = false;
+
+  constructor(private dataService: DataService) {}
 
   searchData(value: string) {
     this.filteredData.next(this.data.filter((searchRes) => {
