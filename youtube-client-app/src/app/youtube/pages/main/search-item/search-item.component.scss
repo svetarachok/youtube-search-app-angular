@@ -8,10 +8,10 @@
   gap: 1.5rem;
   border-radius: 5px;
   background-color: #f3f2f2;
-  .card-title {
+  &_title {
     text-align: center;
   }
-  .search-card_icons {
+  &_icons {
     display: flex;
     justify-content: space-evenly;
     .card-icon {
@@ -20,11 +20,11 @@
       gap: 5px;
     }
   }
-  .card-btn {
+  &_btn {
     width: 35%;
     margin: 0 auto;
   }
-  .card-footer-bar {
+  &_footer-bar {
     height: 5px;
     margin: 0 -1.5rem -1.5rem;
     border-radius: 0 0 5px 5px;

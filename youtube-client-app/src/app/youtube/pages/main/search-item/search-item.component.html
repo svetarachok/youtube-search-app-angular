@@ -6,7 +6,7 @@
     <span class="card-icon"><mat-icon>thumb_down_alt</mat-icon>{{ searchItem.statistics.dislikeCount }}</span>
     <span class="card-icon"><mat-icon>forum</mat-icon>{{ searchItem.statistics.commentCount }}</span>
   </mat-card-actions>
-  <mat-card-title class="card-title">{{ searchItem.snippet.title }}</mat-card-title>
-  <button mat-raised-button color="primary" class="card-btn" (click)="getMoreInfo()">More info</button>
-  <mat-card-footer class="card-footer-bar" [appFooterColor]="color"></mat-card-footer>
+  <mat-card-title class="search-card_title">{{ searchItem.snippet.title }}</mat-card-title>
+  <button mat-raised-button color="primary" class="search-card_btn" (click)="getMoreInfo()">More info</button>
+  <mat-card-footer class="search-card_footer-bar" [appFooterColor]="color"></mat-card-footer>
 </mat-card>

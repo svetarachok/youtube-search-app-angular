@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  .search-form-field {
+  &-field {
     width: 30rem;
     @media (max-width: 768px) {
       width: 16rem;

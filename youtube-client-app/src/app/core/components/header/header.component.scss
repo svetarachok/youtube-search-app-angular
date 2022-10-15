@@ -1,12 +1,14 @@
-.header-container {
-  margin: -20px auto 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 1rem 1.5rem;
-  background-color: #f3f2f2;
-  .header-center {
+.header {
+  &-container {
+    margin: -20px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 1.5rem;
+    background-color: #f3f2f2;
+  }
+  &-center {
     display: flex;
     align-items: center;
     gap: 1rem; 
@@ -21,6 +23,7 @@
     }
   }
 }
+  
 
 .user {
   display: flex;
@@ -28,7 +31,7 @@
   @media (max-width: 425px) {    
     order: 2;
   }
-  .user-name {
+  &-name {
     padding-right: 1rem;
     margin-bottom: 0;
   }
