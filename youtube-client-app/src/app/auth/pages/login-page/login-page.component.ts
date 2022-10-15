@@ -34,8 +34,8 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['/search-results']);
   
       formDirective.resetForm();
-      this.loginForm.reset();
     }
+    this.loginForm.reset();
   }
 
   getErrorMessage() {
