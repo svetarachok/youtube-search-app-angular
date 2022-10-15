@@ -11,7 +11,7 @@ export class AuthGuardService implements CanActivate {
   constructor(private authService: AuthService) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if (this.authService.isAuthentificated) {
       return true;
     } else {

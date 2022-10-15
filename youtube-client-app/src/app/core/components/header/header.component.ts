@@ -14,9 +14,9 @@ export class HeaderComponent {
 
   public get userData() {
     if (this.authService.userData.value) {
-      return `Hello, ${this.authService.userData.value}`;
+      return `Hello, ${this.authService.userData.value.toUpperCase()}`;
     } else {
-      return 'User Name';
+      return 'Please, login';
     }
   }
 

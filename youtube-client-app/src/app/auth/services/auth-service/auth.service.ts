@@ -15,6 +15,7 @@ export class AuthService {
 
   onLogout() {
     this.isLoggedIn = false;
+    this.userData.next('');
   }
 
   get isAuthentificated() {
