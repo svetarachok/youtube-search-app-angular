@@ -25,19 +25,21 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(formDirective: FormGroupDirective) {
-    const userToken = this.loginForm.value.login + this.loginForm.value.password;
-    this.localStorageService.setUserToken(userToken);
-
-    this.authService.onLogin();
-    this.authService.setUserData(this.loginForm.value.login);
-    this.router.navigate(['/search-results']);
+    if (this.loginForm.value.login && this.loginForm.value.password) {
+      const userToken = this.loginForm.value.login + this.loginForm.value.password;
+      this.localStorageService.setUserToken(userToken);
+  
+      this.authService.onLogin();
+      this.authService.setUserData(this.loginForm.value.login);
+      this.router.navigate(['/search-results']);
+    }
 
     formDirective.resetForm();
     this.loginForm.reset();
   }
 
   getErrorMessage() {
-
+    return 'You must enter a value';
   }
 
 }
