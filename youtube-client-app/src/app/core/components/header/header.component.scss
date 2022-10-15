@@ -16,6 +16,9 @@
       justify-content: space-between;
       padding-top: 1rem;
     }
+    @media (max-width: 325px) {    
+      flex-direction: column;
+    }
   }
 }
 
