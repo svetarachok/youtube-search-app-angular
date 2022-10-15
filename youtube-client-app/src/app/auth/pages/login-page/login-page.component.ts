@@ -32,14 +32,19 @@ export class LoginPageComponent implements OnInit {
       this.authService.onLogin();
       this.authService.setUserData(this.loginForm.value.login);
       this.router.navigate(['/search-results']);
+  
+      formDirective.resetForm();
+      this.loginForm.reset();
     }
-
-    formDirective.resetForm();
-    this.loginForm.reset();
   }
 
   getErrorMessage() {
     return 'You must enter a value';
   }
+
+  getFormErrorMessage() {
+    return 'You must fill in the form';
+  }
+
 
 }
