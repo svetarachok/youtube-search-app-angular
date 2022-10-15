@@ -25,7 +25,7 @@
           <span class="card-icon"><mat-icon>thumb_down_alt</mat-icon>{{ dataItem.statistics.dislikeCount }}</span>
           <span class="card-icon"><mat-icon>forum</mat-icon>{{ dataItem.statistics.commentCount }}</span>
         </mat-card-actions>
-        <mat-card-footer class="card-footer"></mat-card-footer>
+        <mat-card-footer class="card-footer" [appFooterColor]="color"></mat-card-footer>
       </div>
     </div>
   </mat-card>

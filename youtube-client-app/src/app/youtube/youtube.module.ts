@@ -7,11 +7,13 @@ import { SearchItemComponent } from './pages/main/search-item/search-item.compon
 import { SearchResultsComponent } from './pages/main/search-results.component';
 import { DetailedInformationComponent } from './pages/detailed-information/detailed-information.component';
 import { AuthGuardService } from '../auth/services/auth-guard/auth-guard.service';
+import { FooterColorDirective } from './directives/footer-color/footer-color.directive';
 @NgModule({
   declarations: [
     SearchResultsComponent,
     SearchItemComponent,
     DetailedInformationComponent,
+    FooterColorDirective,
   ],
   imports: [
     CommonModule,
