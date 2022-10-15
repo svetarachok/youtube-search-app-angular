@@ -11,30 +11,28 @@
   flex-direction: column;
   width: 70%; 
   padding: 0;
+  background: #f3f2f2;
   &_container {
     display: flex;
     justify-content: space-between;
   }
   &_img{
     width: 55%;
-    img {
-      width: 100%;
-    }
   }
   &_data {
     width: 45%;
-    padding: 1.5rem 3rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     .data_head {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      padding: 1.5rem 3rem 0;
       &_title {
-        width: 60%;
         line-height: 1.1;
       }
-      .data_date {
+      &_date {
+        text-align: right;
         font-size: 0.8rem;
       }
     }
@@ -50,12 +48,23 @@
         gap: 0.3rem;
         }
       }
+    .data_description {
+      font-size: 0.8rem;
+      color: rgba(0,0,0,.54);
+      padding: 0 3rem;
+      &_header{
+        font-size: 1rem;
+        color: rgba(0,0,0,.87);
+        margin-bottom: 0;
+      } 
+    }
     }
   }
 
 .card-footer {
   background-color: red;
   height: 5px;
+  margin: 0;
 }
 
 .back-btn {

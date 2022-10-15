@@ -12,6 +12,12 @@ import { Location } from '@angular/common';
 export class DetailedInformationComponent implements OnInit {
   dataItem!: SearchItemInterface;
 
+  visibleDescription: string = '';
+
+  hiddenDescription: string = '';
+
+  descriptionNotHidden: boolean = false;
+
   constructor(
     private route: ActivatedRoute, 
     private dataService: DataService,
@@ -21,9 +27,16 @@ export class DetailedInformationComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.dataItem = this.dataService.getDataItem(id) as SearchItemInterface;
     this.route.params.subscribe(params => this.dataItem = <SearchItemInterface> this.dataService.getDataItem(params['id']));
+
+    this.visibleDescription = this.dataItem.snippet.description.slice( 0, 240); 
+    this.hiddenDescription = this.dataItem.snippet.description.slice(241);
   }
 
   onBackClicked() {
     this.location.back();
+  }
+
+  toggleDescription() {
+    this.descriptionNotHidden = !this.descriptionNotHidden;
   }
 }
