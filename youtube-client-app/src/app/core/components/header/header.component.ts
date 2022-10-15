@@ -32,4 +32,8 @@ export class HeaderComponent {
     this.router.navigate(['/login']);
   }
 
+  onFiltersButtonClick() {
+    this.isClosed = !this.isClosed;
+  }
+
 }

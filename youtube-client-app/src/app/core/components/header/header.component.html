@@ -2,7 +2,7 @@
   <img src="../../assets/youtube-app-logo.png" alt="Logo">
   <div class="header-center">
     <app-search-bar></app-search-bar>
-    <button mat-raised-button color="primary" (click)="isClosed = !isClosed" class="filters-btn">
+    <button mat-raised-button color="primary" (click)="onFiltersButtonClick()" class="filters-btn">
       <mat-icon>tune</mat-icon>
     </button>
   </div>
@@ -16,6 +16,6 @@
     </button>
   </div>
 </div>
-<div [ngClass]="{'closed': isClosed}">
+<div *ngIf="!isClosed">
   <app-filter-bar class="filter-bar"></app-filter-bar>
 </div>
