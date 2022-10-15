@@ -15,7 +15,6 @@
         </button>
         <mat-error *ngIf="!loginForm.value.password">{{ getErrorMessage() }}</mat-error>
       </mat-form-field>
-      <mat-error *ngIf="!loginForm.value.password && !loginForm.value.login">{{ getFormErrorMessage() }}</mat-error>
     </div>
     <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>

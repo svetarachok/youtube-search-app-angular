@@ -42,9 +42,4 @@ export class LoginPageComponent implements OnInit {
     return 'You must enter a value';
   }
 
-  getFormErrorMessage() {
-    return 'You must fill in the form';
-  }
-
-
 }
