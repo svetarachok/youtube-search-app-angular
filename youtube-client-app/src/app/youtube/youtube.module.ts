@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SearchItemComponent } from './pages/main/search-item/search-item.component';
 import { SearchResultsComponent } from './pages/main/search-results.component';
 import { DetailedInformationComponent } from './pages/detailed-information/detailed-information.component';
+import { AuthGuardService } from '../auth/services/auth-guard/auth-guard.service';
 @NgModule({
   declarations: [
     SearchResultsComponent,
@@ -16,7 +17,7 @@ import { DetailedInformationComponent } from './pages/detailed-information/detai
     CommonModule,
     MaterialModule,
     RouterModule.forChild([
-      { path: '', component: SearchResultsComponent },
+      { path: '', component: SearchResultsComponent, canActivate: [AuthGuardService] },
       { path: ':id', component: DetailedInformationComponent },
     ]),
   ],

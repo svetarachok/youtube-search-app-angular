@@ -1,5 +1,5 @@
 <div class="login-page">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-page_form">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(formDirective)" class="login-page_form" #formDirective="ngForm">
     <h2>Login</h2>
     <div class="login-page_inputs-container">
       <mat-form-field appearance="fill">
