@@ -12,8 +12,6 @@ import { Location } from '@angular/common';
 export class DetailedInformationComponent implements OnInit {
   dataItem!: SearchItemInterface;
 
-  itemDate: string = '';
-
   constructor(
     private route: ActivatedRoute, 
     private dataService: DataService,
@@ -23,13 +21,6 @@ export class DetailedInformationComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.dataItem = this.dataService.getDataItem(id) as SearchItemInterface;
     this.route.params.subscribe(params => this.dataItem = <SearchItemInterface> this.dataService.getDataItem(params['id']));
-
-    this.getDate();
-  }
-  
-  getDate() {
-    const { publishedAt } = this.dataItem.snippet;
-    this.itemDate = new Date(publishedAt).toDateString();
   }
 
   onBackClicked() {

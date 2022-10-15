@@ -10,7 +10,7 @@
       <div class="detailed-info_data">
         <div class="data_head">
           <mat-card-title class="data_head_title">{{ dataItem.snippet.title }}</mat-card-title>
-          <mat-card-subtitle class="data_date">{{ itemDate }}</mat-card-subtitle>
+          <mat-card-subtitle class="data_date">{{ dataItem.snippet.publishedAt | date:'fullDate' }}</mat-card-subtitle>
         </div>
         <div class="data_description"></div>
         <h2>Description:</h2>
