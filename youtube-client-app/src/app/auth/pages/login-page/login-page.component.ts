@@ -23,8 +23,9 @@ export class LoginPageComponent implements OnInit {
       password: new FormControl('password', Validators.required),
     });
   }
-
+  
   onSubmit(formDirective: FormGroupDirective) {
+    console.log(this.loginForm);
     if (this.loginForm.value.login && this.loginForm.value.password) {
       const userToken = this.loginForm.value.login + this.loginForm.value.password;
       this.localStorageService.setUserToken(userToken);
@@ -33,9 +34,9 @@ export class LoginPageComponent implements OnInit {
       this.authService.setUserData(this.loginForm.value.login);
       this.router.navigate(['/search-results']);
   
-      formDirective.resetForm();
       this.loginForm.reset();
     }
+    formDirective.resetForm();
   }
 
   getErrorMessage() {
