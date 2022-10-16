@@ -1,0 +1,18 @@
+.not-found-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 11rem);
+  &_img {
+    margin: 2rem 1rem 2rem;
+    width: 7rem;
+  }
+  &_description {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #818181;
+    width: 15rem;
+    line-height: 1.4;
+    margin-left: 1rem;
+  }
+}

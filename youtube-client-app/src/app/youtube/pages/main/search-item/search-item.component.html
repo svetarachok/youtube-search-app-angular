@@ -1,0 +1,12 @@
+<mat-card class="search-card">
+  <img [src]="searchItem.snippet.thumbnails.medium.url" alt="Some Image">
+  <mat-card-actions class="search-card_icons">
+    <span class="card-icon"><mat-icon>visibility</mat-icon>{{ searchItem.statistics.viewCount }}</span>
+    <span class="card-icon"><mat-icon>favorite</mat-icon>{{ searchItem.statistics.likeCount }}</span>
+    <span class="card-icon"><mat-icon>thumb_down_alt</mat-icon>{{ searchItem.statistics.dislikeCount }}</span>
+    <span class="card-icon"><mat-icon>forum</mat-icon>{{ searchItem.statistics.commentCount }}</span>
+  </mat-card-actions>
+  <mat-card-title class="search-card_title">{{ searchItem.snippet.title }}</mat-card-title>
+  <button mat-raised-button color="primary" class="search-card_btn" (click)="getMoreInfo()">More info</button>
+  <mat-card-footer class="search-card_footer-bar" [appFooterColor]="color"></mat-card-footer>
+</mat-card>

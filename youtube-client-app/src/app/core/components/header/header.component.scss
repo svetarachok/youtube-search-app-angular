@@ -1,0 +1,45 @@
+.header {
+  &-container {
+    margin: -20px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 1.5rem;
+    background-color: #f3f2f2;
+  }
+  &-center {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    @media (max-width: 425px) {    
+      flex-basis: 100%;
+      order: 3;
+      justify-content: space-between;
+      padding-top: 1rem;
+    }
+    @media (max-width: 325px) {    
+      flex-direction: column;
+    }
+  }
+}
+  
+
+.user {
+  display: flex;
+  align-items: center;
+  @media (max-width: 425px) {    
+    order: 2;
+  }
+  &-name {
+    padding-right: 1rem;
+    margin-bottom: 0;
+  }
+  .logout-btn {
+    margin-left: 1rem;
+  }
+}
+
+.closed {
+  display: none;
+}

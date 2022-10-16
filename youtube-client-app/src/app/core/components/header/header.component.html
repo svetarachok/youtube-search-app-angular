@@ -1,0 +1,21 @@
+<div class="header-container">    
+  <img src="../../assets/youtube-app-logo.png" alt="Logo">
+  <div class="header-center">
+    <app-search-bar></app-search-bar>
+    <button mat-raised-button color="primary" (click)="onFiltersButtonClick()" class="filters-btn">
+      <mat-icon>tune</mat-icon>
+    </button>
+  </div>
+  <div class="user">
+    <p class="user-name"> {{ userData }} </p>
+    <button mat-mini-fab color="primary" [disabled]="true" class="login-btn">
+      <mat-icon aria-hidden="true" fontIcon="account_circle"></mat-icon>
+    </button>
+    <button mat-mini-fab color="primary" class="logout-btn" (click)="onLogout()">
+      <mat-icon aria-hidden="true" fontIcon="logout"></mat-icon>
+    </button>
+  </div>
+</div>
+<div *ngIf="!isClosed">
+  <app-filter-bar class="filter-bar"></app-filter-bar>
+</div>
