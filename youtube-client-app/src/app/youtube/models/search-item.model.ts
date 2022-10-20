@@ -1,7 +1,10 @@
 export interface SearchItemInterface {
   kind: string,
   etag: string,
-  id: string,
+  id: {
+    kind: string
+    videoId: string
+  } | string,
   snippet: {
     publishedAt: string,
     channelId: string,

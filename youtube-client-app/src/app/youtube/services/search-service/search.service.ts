@@ -1,6 +1,9 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SearchItemInterface } from '../../models/search-item.model';
+import { SearchResults } from '../../models/search-results.model';
 import { DataService } from '../data-service/data.service';
 
 @Injectable({
@@ -8,7 +11,7 @@ import { DataService } from '../data-service/data.service';
 })
 export class SearchService {
 
-  data: SearchItemInterface[] = this.dataService.getData();
+  data!: SearchItemInterface[];
 
   filteredData: BehaviorSubject<SearchItemInterface[]> = new BehaviorSubject(this.data);
 
@@ -16,14 +19,32 @@ export class SearchService {
 
   startedSearch = false;
 
-  constructor(private dataService: DataService) {}
+  idsArray: string[] = [];
 
+  constructor(private dataService: DataService, private http: HttpClient) {}
+  
   searchData(value: string) {
-    this.filteredData.next(this.data.filter((searchRes) => {
-      const searchList = searchRes.snippet.title.toLowerCase();
-      return searchList.includes(value.toLowerCase());
-    }));
-    this.sortedData = this.filteredData.value;
+    this.dataService.getDataFromSearchList(value)
+      .subscribe( data => {
+        console.log(data);
+        this.idsArray = data;
+        const dataIds = this.idsArray.join(',');
+        let params = this.getVideoParams(dataIds);
+        this.http.get<SearchResults>(
+          'https://youtube.googleapis.com/youtube/v3/videos',
+          {
+            params: params,
+          })
+          .pipe(
+            map( videos => videos.items),
+          ).subscribe( items => {        
+            this.filteredData.next(items.filter((searchRes) => {
+              const searchList = searchRes.snippet.title.toLowerCase();
+              return searchList.includes(value.toLowerCase());
+            }));
+            this.sortedData = this.filteredData.value;
+          });
+      });
   }
 
   updateSearch() {
@@ -52,5 +73,14 @@ export class SearchService {
       return searchList.includes(input.toLowerCase());
     }));
   }
+
+  private getVideoParams(videoIds: string) {
+    let params = new HttpParams();
+    params = params.append('part', 'snippet, statistics');
+    params = params.append('id', `${videoIds}`);
+    params = params.append('key', 'AIzaSyBgD4Fb2rwBcy1O-tkZi6cQb-bIwnRX7Zw');
+    return params;
+  }
+
 }
  

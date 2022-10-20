@@ -16,8 +16,6 @@ export class SearchResultsComponent {
     return this.searchService.filteredData.value;
   }
 
-  constructor(private searchService: SearchService) {
-
-  }
+  constructor(private searchService: SearchService) {}
 
 }
