@@ -47,6 +47,13 @@ export class SearchService {
       });
   }
 
+  getSearchItem(id: string) {
+    const dataItem = this.filteredData.value.find((item: SearchItemInterface) => {
+      return item.id === id;
+    });
+    return dataItem;
+  }
+
   updateSearch() {
     this.filteredData = new BehaviorSubject(this.data);
   }
