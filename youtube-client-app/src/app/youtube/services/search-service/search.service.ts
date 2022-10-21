@@ -4,7 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SearchItemInterface } from '../../models/search-item.model';
 import { SearchResults } from '../../models/search-results.model';
-import { DataService } from '../data-service/data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +20,28 @@ export class SearchService {
 
   idsArray: string[] = [];
 
-  constructor(private dataService: DataService, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
+
+  getDataFromSearchList(value: string) {
+    let params = this.getSerachParams(value);
+    return this.http.get<SearchResults>('/search', {
+      params: params,
+    })
+      .pipe(
+        map(data => {
+          const arr = [];
+          for (const key of data.items) {
+            if ( typeof key.id === 'object') {
+              arr.push(key.id.videoId);
+            }
+          }
+          return arr;
+        }),
+      );
+  }
   
   searchData(value: string) {
-    this.dataService.getDataFromSearchList(value)
+    this.getDataFromSearchList(value)
       .subscribe( data => {
         this.idsArray = data;
         const dataIds = this.idsArray.join(',');
@@ -80,6 +97,14 @@ export class SearchService {
       const searchList = searchRes.snippet.title.toLowerCase();
       return searchList.includes(input.toLowerCase());
     }));
+  }
+
+  private getSerachParams(value: string) {
+    let params = new HttpParams();
+    params = params.append('part', 'snippet');
+    params = params.append('maxResults', '25');
+    params = params.append('q', `${value}`);
+    return params;
   }
 
   private getVideoParams(videoIds: string) {
