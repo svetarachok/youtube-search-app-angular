@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth-service/auth.service';
 import { LocalStorageService } from 'src/app/youtube/services/local-storage/local-storage.service';
@@ -10,7 +10,11 @@ import { LocalStorageService } from 'src/app/youtube/services/local-storage/loca
 })
 export class HeaderComponent {
 
-  @Input() isClosed = true;
+  public isClosed: boolean = true;
+
+  public get isAuthorized() {
+    return this.authService.isLoggedIn;
+  }  
 
   public get userData() {
     if (this.authService.userData.value) {

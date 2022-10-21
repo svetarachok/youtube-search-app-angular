@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { DataService } from 'src/app/youtube/services/data-service/data.service';
 import { SearchService } from 'src/app/youtube/services/search-service/search.service';
 
 @Component({
@@ -13,14 +11,14 @@ import { SearchService } from 'src/app/youtube/services/search-service/search.se
 export class SearchBarComponent implements OnInit {
   public searchData$ = new Subject<string>();
 
-  constructor(private searchService: SearchService, private router: Router, private dataService: DataService) {
+  constructor(private searchService: SearchService) {
   }
 
   ngOnInit() {
     this.searchService.startedSearch = true;
     this.searchData$
       .pipe(
-        filter(text => text.length > 2),
+        filter(text => text.length >= 3),
         debounceTime(300),
         distinctUntilChanged(),
       )
