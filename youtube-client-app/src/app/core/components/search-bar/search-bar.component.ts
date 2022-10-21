@@ -20,11 +20,14 @@ export class SearchBarComponent implements OnInit {
     this.searchService.startedSearch = true;
     this.searchData$
       .pipe(
-        filter(text => text.length >= 3),
+        filter(text => text.length > 2),
         debounceTime(300),
         distinctUntilChanged(),
       )
-      .subscribe((data) => this.searchService.searchData(data));
+      .subscribe((data) => {
+        console.log('Search started');
+        this.searchService.searchData(data);
+      });
   }
 
   onKeyupAtSearch(e:Event) {

@@ -17,7 +17,7 @@ export class DataService {
 
   getDataFromSearchList(value: string) {
     let params = this.getSerachParams(value);
-    return this.http.get<SearchResults>('https://youtube.googleapis.com/youtube/v3/search', {
+    return this.http.get<SearchResults>('/search', {
       params: params,
     })
       .pipe(
@@ -38,7 +38,6 @@ export class DataService {
     params = params.append('part', 'snippet');
     params = params.append('maxResults', '25');
     params = params.append('q', `${value}`);
-    params = params.append('key', 'AIzaSyBgD4Fb2rwBcy1O-tkZi6cQb-bIwnRX7Zw');
     return params;
   }
 }

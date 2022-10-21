@@ -26,12 +26,11 @@ export class SearchService {
   searchData(value: string) {
     this.dataService.getDataFromSearchList(value)
       .subscribe( data => {
-        console.log(data);
         this.idsArray = data;
         const dataIds = this.idsArray.join(',');
         let params = this.getVideoParams(dataIds);
         this.http.get<SearchResults>(
-          'https://youtube.googleapis.com/youtube/v3/videos',
+          '/videos',
           {
             params: params,
           })
@@ -39,8 +38,10 @@ export class SearchService {
             map( videos => videos.items),
           ).subscribe( items => {        
             this.filteredData.next(items.filter((searchRes) => {
-              const searchList = searchRes.snippet.title.toLowerCase();
-              return searchList.includes(value.toLowerCase());
+              const searchTitle = searchRes.snippet.title.toLowerCase();
+              // console.log('Что ищем: ' + value);
+              // console.log('Где ищем: ' + searchTitle);
+              return searchTitle.includes(value.toLowerCase());
             }));
             this.sortedData = this.filteredData.value;
           });
@@ -85,7 +86,6 @@ export class SearchService {
     let params = new HttpParams();
     params = params.append('part', 'snippet, statistics');
     params = params.append('id', `${videoIds}`);
-    params = params.append('key', 'AIzaSyBgD4Fb2rwBcy1O-tkZi6cQb-bIwnRX7Zw');
     return params;
   }
 
