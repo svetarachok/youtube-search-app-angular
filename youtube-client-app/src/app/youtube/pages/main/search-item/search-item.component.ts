@@ -11,12 +11,15 @@ import { setBgColor  } from '../../../utils/updateColorFromDate';
 export class SearchItemComponent implements OnInit {
   @Input() searchItem!: SearchItemInterface;
 
+  dislikesCount: number = 0;
+
   color: string = '';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.color = setBgColor(this.searchItem.snippet.publishedAt, this.color);
+    this.dislikesCount = Math.round(+this.searchItem.statistics.likeCount * Math.random());
   }
 
   getMoreInfo() {

@@ -22,7 +22,7 @@
         <mat-card-actions class="data_icons">
           <span class="card-icon"><mat-icon>visibility</mat-icon>{{ dataItem.statistics.viewCount }}</span>
           <span class="card-icon"><mat-icon>favorite</mat-icon>{{ dataItem.statistics.likeCount }}</span>
-          <span class="card-icon"><mat-icon>thumb_down_alt</mat-icon>{{ dataItem.statistics.dislikeCount }}</span>
+          <span class="card-icon"><mat-icon>thumb_down_alt</mat-icon>{{ dislikesCount }}</span>
           <span class="card-icon"><mat-icon>forum</mat-icon>{{ dataItem.statistics.commentCount }}</span>
         </mat-card-actions>
         <mat-card-footer class="card-footer" [appFooterColor]="color"></mat-card-footer>

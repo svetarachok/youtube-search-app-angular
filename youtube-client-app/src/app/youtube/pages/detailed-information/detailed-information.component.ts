@@ -21,6 +21,8 @@ export class DetailedInformationComponent implements OnInit {
 
   color: string = '';
 
+  dislikesCount: number = 0;
+
   constructor(
     private route: ActivatedRoute, 
     private searchService: SearchService,
@@ -35,6 +37,7 @@ export class DetailedInformationComponent implements OnInit {
     this.visibleDescription = this.dataItem.snippet.description.slice( 0, 240); 
     this.hiddenDescription = this.dataItem.snippet.description.slice(241);
     this.color = setBgColor(this.dataItem.snippet.publishedAt, this.color);
+    this.dislikesCount = Math.round(+this.dataItem.statistics.likeCount * Math.random());
   }
 
   onBackClicked() {
