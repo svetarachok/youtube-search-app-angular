@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DataService } from 'src/app/youtube/services/data-service/data.service';
 import { SearchService } from 'src/app/youtube/services/search-service/search.service';
 
@@ -8,27 +10,24 @@ import { SearchService } from 'src/app/youtube/services/search-service/search.se
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
-export class SearchBarComponent {
-
-  public searchData = '';
+export class SearchBarComponent implements OnInit {
+  public searchData$ = new Subject<string>();
 
   constructor(private searchService: SearchService, private router: Router, private dataService: DataService) {
   }
-  
-  onSearch() {
-    this.router.navigate(['/search-results']);
+
+  ngOnInit() {
     this.searchService.startedSearch = true;
-    // this.searchService.getData(this.searchData);
-    this.searchService.searchData(this.searchData);
-  }
-  
-  onKeyupAtSearch(e: KeyboardEvent) {
-    if (e.key === 'Enter') {
-      this.onSearch();
-    }
-    if (!this.searchData) {
-      this.searchService.updateSearch();
-    }
+    this.searchData$
+      .pipe(
+        filter(text => text.length >= 3),
+        debounceTime(300),
+        distinctUntilChanged(),
+      )
+      .subscribe((data) => this.searchService.searchData(data));
   }
 
+  onKeyupAtSearch(e:Event) {
+    this.searchData$.next((e.target as HTMLInputElement).value);
+  }
 }

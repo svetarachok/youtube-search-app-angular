@@ -33,13 +33,6 @@ export class DataService {
       );
   }
 
-  getDataItem(id: string) {
-    const dataItem = this.appData.find((item: SearchItemInterface) => {
-      return item.id === id;
-    });
-    return dataItem;
-  }
-
   private getSerachParams(value: string) {
     let params = new HttpParams();
     params = params.append('part', 'snippet');
