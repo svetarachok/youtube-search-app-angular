@@ -19,9 +19,17 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      login: new FormControl('', Validators.required),
-      password: new FormControl(null, Validators.required),
+      login: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, this.passwordValidador.bind(this)]),
     });
+  }
+
+  get login() {
+    return this.loginForm.get('login');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 
   onSubmit(formDirective: FormGroupDirective) {
@@ -35,17 +43,42 @@ export class LoginPageComponent implements OnInit {
       this.authService.setUserData(login);
       this.router.navigate(['/search-results']);
   
-      formDirective.resetForm();
     }
     this.loginForm.reset();
+    formDirective.resetForm();
   }
 
   togglePasswordHide() {
     this.isHidden = !this.isHidden;
   }
 
-  getErrorMessage() {
-    return 'You must enter a value';
+  getLoginErrorMessage() {
+    if (this.login!.hasError('required')) {
+      return 'Please enter a login email';
+    } 
+    return this.login!.hasError('email') ? 'The login email is invalid' : '';
+  }
+
+  getPasswordErrorMessage() {
+    if (this.password!.hasError('required')) {
+      return 'Please enter a password';
+    } else if (this.password!.hasError('passwordInvalid')) {
+      const message = `Your password isn\'t strong enough.
+      It should contan:
+      -a mixture of both uppercase and lowercase letters;
+      - a mixture of letters and numbers`;      
+      return message;
+    } 
+  }
+
+  passwordValidador(control: FormControl) {
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&].{8,}$/gm;
+    console.log(control.value);
+    if (!regex.test(control.value)) {
+      return { passwordInvalid: true };
+    } else {
+      return null;
+    }
   }
 
 }
