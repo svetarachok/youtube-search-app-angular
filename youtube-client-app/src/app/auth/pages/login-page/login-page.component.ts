@@ -33,19 +33,17 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(formDirective: FormGroupDirective) {
-    const login = this.loginForm.value.login;
-    const password = this.loginForm.value.password;
-    if (login && password) {
-      const userToken = login + password;
+    if (this.loginForm.valid) {
+      const userToken: string = this.login!.value + this.password!.value;
       this.localStorageService.setUserToken(userToken);
   
       this.authService.onLogin();
-      this.authService.setUserData(login);
+      this.authService.setUserData(this.login?.value);
       this.router.navigate(['/search-results']);
   
+      this.loginForm.reset();
+      formDirective.resetForm();
     }
-    this.loginForm.reset();
-    formDirective.resetForm();
   }
 
   togglePasswordHide() {
