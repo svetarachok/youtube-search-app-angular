@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
+import { URL_REGEX } from '../../utils/constants';
 
 @Component({
   selector: 'app-admin-page',
@@ -16,8 +17,8 @@ export class AdminPageComponent implements OnInit {
     this.createCardForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       description: new FormControl('', [Validators.maxLength(255)]),
-      image: new FormControl('', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
-      link: new FormControl('', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
+      image: new FormControl('', [Validators.required, Validators.pattern(`${URL_REGEX}`)]),
+      link: new FormControl('', [Validators.required, Validators.pattern(`${URL_REGEX}`)]),
       date: new FormControl('', [Validators.required, this.dateValidador]),
     });
   }

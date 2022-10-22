@@ -58,13 +58,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   getPasswordErrorMessage() {
-    if (this.password!.hasError('required')) {
+    if (this.password!.hasError('required') && this.password?.touched) {
       return 'Please enter a password';
-    } else if (this.password!.hasError('passwordInvalid')) {
-      const message = `Your password isn\'t strong enough.
-      It should contan:
-      -a mixture of both uppercase and lowercase letters;
-      - a mixture of letters and numbers`;      
+    } else if (this.password!.hasError('passwordInvalid') && this.password?.touched) {
+      const message = 'Your password isn\'t strong enough. It should contain at least 8 characters, both uppercase and lowercase letters, numbers and at least one special character, e.g., ! @ # ? ]';      
       return message;
     } 
   }
