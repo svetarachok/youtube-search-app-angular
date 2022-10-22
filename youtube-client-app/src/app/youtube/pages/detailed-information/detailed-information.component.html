@@ -4,7 +4,7 @@
   </button>
   <mat-card class="detailed-info">
     <div class="detailed-info_container">
-      <img [src]="imageUrl" [alt]="dataItem.snippet.title" class="detailed-info_img">
+      <img [src]="this.dataItem.snippet.thumbnails.standard.url" [alt]="dataItem.snippet.title" class="detailed-info_img">
       <div class="detailed-info_data">
         <div class="data_head">
           <mat-card-subtitle class="data_head_date">{{ dataItem.snippet.publishedAt | date:'fullDate' }}</mat-card-subtitle>
