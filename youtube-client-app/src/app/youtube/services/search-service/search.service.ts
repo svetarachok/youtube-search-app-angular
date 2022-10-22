@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SearchItemInterface } from '../../models/search-item.model';
 import { SearchResults } from '../../models/search-results.model';
@@ -62,10 +62,16 @@ export class SearchService {
       });
   }
 
-  getSearchItem(id: string) {
-    return this.filteredData.value.find((item: SearchItemInterface) => {
-      return item.id === id;
-    });
+  getSearchItem(id: string): Observable<SearchItemInterface> {
+    let params = new HttpParams();
+    params = params.append('part', 'snippet, statistics');
+    params = params.append('id', `${id}`);
+    return this.http.get<SearchResults>('/videos', {
+      params: params,
+    })
+      .pipe(
+        map(data => data.items[0]),
+      );
   }
 
   updateSearch() {

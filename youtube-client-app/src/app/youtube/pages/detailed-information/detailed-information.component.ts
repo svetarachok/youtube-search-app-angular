@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SearchItemInterface } from '../../models/search-item.model';
 import { Location } from '@angular/common';
 import { setBgColor } from '../../utils/updateColorFromDate';
@@ -21,22 +21,30 @@ export class DetailedInformationComponent implements OnInit {
 
   color: string = '';
 
+  itemId: string = '';
+
   dislikesCount: number = 0;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
+    private router: Router,
     private searchService: SearchService,
     private location: Location) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
-    this.dataItem = this.searchService.getSearchItem(id) as SearchItemInterface;
-    this.route.params.subscribe(params => this.dataItem = <SearchItemInterface> this.searchService.getSearchItem(params['id']));
-    
-    this.visibleDescription = this.dataItem.snippet.description.slice( 0, 240); 
-    this.hiddenDescription = this.dataItem.snippet.description.slice(241);
-    this.color = setBgColor(this.dataItem.snippet.publishedAt, this.color);
-    this.dislikesCount = Math.round(+this.dataItem.statistics.likeCount * Math.random() / 100);
+    this.route.params.subscribe(params => this.itemId = params['id']);
+    this.searchService.getSearchItem(this.itemId).subscribe(data => {
+      this.dataItem = data;
+      if (!this.dataItem) {
+        this.router.navigate(['/page-not-found']);
+      }
+    });
+    if (this.dataItem) {
+      this.visibleDescription = this.dataItem.snippet.description.slice( 0, 240); 
+      this.hiddenDescription = this.dataItem.snippet.description.slice(241);
+      this.color = setBgColor(this.dataItem.snippet.publishedAt, this.color);
+      this.dislikesCount = Math.round(+this.dataItem.statistics.likeCount * Math.random() / 100);
+    }
   }
 
   get imageUrl() {
