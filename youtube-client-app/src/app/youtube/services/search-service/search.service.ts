@@ -52,14 +52,11 @@ export class SearchService {
             params: params,
           })
           .pipe(
-            map( videos => videos.items),
+            map( videos => {
+              return videos.items;
+            }),
           ).subscribe( items => {        
-            this.filteredData.next(items.filter((searchRes) => {
-              const searchTitle = searchRes.snippet.title.toLowerCase();
-              // console.log('Что ищем: ' + value);
-              // console.log('Где ищем: ' + searchTitle);
-              return searchTitle.includes(value.toLowerCase());
-            }));
+            this.filteredData.next(items);
             this.sortedData = this.filteredData.value;
           });
       });
@@ -101,7 +98,6 @@ export class SearchService {
 
   private getSerachParams(value: string) {
     let params = new HttpParams();
-    params = params.append('part', 'snippet');
     params = params.append('maxResults', '25');
     params = params.append('q', `${value}`);
     return params;
