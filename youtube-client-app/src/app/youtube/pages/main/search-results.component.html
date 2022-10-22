@@ -2,7 +2,7 @@
   <ng-template #searchText search-default-text>
     Start your Search!
   </ng-template>
-  <div class="search-items" *ngIf="searchStarted; else searchText">
+  <div class="search-items" *ngIf="isSearchStarted; else searchText">
     <app-search-item
     *ngFor="let result of filteredResults" 
     [searchItem]="result"

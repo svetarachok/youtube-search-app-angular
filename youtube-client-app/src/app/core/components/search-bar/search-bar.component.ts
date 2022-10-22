@@ -15,7 +15,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchService.startedSearch = true;
     this.searchData$
       .pipe(
         filter(text => text.length >= 3),
@@ -23,12 +22,12 @@ export class SearchBarComponent implements OnInit {
         distinctUntilChanged(),
       )
       .subscribe((data) => {
-        console.log('Search started');
         this.searchService.searchData(data);
       });
   }
 
   onKeyupAtSearch(e:Event) {
+    this.searchService.startedSearch = true;
     this.searchData$.next((e.target as HTMLInputElement).value);
   }
 }

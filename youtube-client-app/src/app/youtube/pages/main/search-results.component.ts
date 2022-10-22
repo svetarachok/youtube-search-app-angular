@@ -8,9 +8,9 @@ import { SearchService } from 'src/app/youtube/services/search-service/search.se
 })
 export class SearchResultsComponent {
 
-  public get searchStarted() {
+  public get isSearchStarted() {
     return this.searchService.startedSearch;
-  } 
+  }
 
   public get filteredResults() {
     return this.searchService.filteredData.value;
