@@ -36,7 +36,7 @@ export class DetailedInformationComponent implements OnInit {
     this.visibleDescription = this.dataItem.snippet.description.slice( 0, 240); 
     this.hiddenDescription = this.dataItem.snippet.description.slice(241);
     this.color = setBgColor(this.dataItem.snippet.publishedAt, this.color);
-    this.dislikesCount = Math.round(+this.dataItem.statistics.likeCount * Math.random());
+    this.dislikesCount = Math.round(+this.dataItem.statistics.likeCount * Math.random() / 100);
   }
 
   onBackClicked() {

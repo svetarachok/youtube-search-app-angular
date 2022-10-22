@@ -19,7 +19,7 @@ export class SearchItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.color = setBgColor(this.searchItem.snippet.publishedAt, this.color);
-    this.dislikesCount = Math.round(+this.searchItem.statistics.likeCount * Math.random());
+    this.dislikesCount = Math.round(+this.searchItem.statistics.likeCount * Math.random() / 100);
   }
 
   getMoreInfo() {
