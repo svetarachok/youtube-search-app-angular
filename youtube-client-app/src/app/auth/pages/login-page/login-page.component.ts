@@ -13,29 +13,35 @@ export class LoginPageComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  hide: boolean = true;
+  isHidden: boolean = true;
 
   constructor(private authService: AuthService, private localStorageService: LocalStorageService, private router: Router) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       login: new FormControl('', Validators.required),
-      password: new FormControl('password', Validators.required),
+      password: new FormControl(null, Validators.required),
     });
   }
 
   onSubmit(formDirective: FormGroupDirective) {
-    if (this.loginForm.value.login && this.loginForm.value.password) {
-      const userToken = this.loginForm.value.login + this.loginForm.value.password;
+    const login = this.loginForm.value.login;
+    const password = this.loginForm.value.password;
+    if (login && password) {
+      const userToken = login + password;
       this.localStorageService.setUserToken(userToken);
   
       this.authService.onLogin();
-      this.authService.setUserData(this.loginForm.value.login);
+      this.authService.setUserData(login);
       this.router.navigate(['/search-results']);
   
       formDirective.resetForm();
     }
     this.loginForm.reset();
+  }
+
+  togglePasswordHide() {
+    this.isHidden = !this.isHidden;
   }
 
   getErrorMessage() {
