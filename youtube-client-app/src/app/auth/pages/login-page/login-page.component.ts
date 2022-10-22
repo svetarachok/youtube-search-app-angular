@@ -73,7 +73,6 @@ export class LoginPageComponent implements OnInit {
 
   passwordValidador(control: FormControl) {
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&].{8,}$/gm;
-    console.log(control.value);
     if (!regex.test(control.value)) {
       return { passwordInvalid: true };
     } else {
