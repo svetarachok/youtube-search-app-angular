@@ -39,6 +39,10 @@ export class DetailedInformationComponent implements OnInit {
     this.dislikesCount = Math.round(+this.dataItem.statistics.likeCount * Math.random() / 100);
   }
 
+  get imageUrl() {
+    return this.dataItem.snippet.thumbnails.maxres ? this.dataItem.snippet.thumbnails.maxres.url : this.dataItem.snippet.thumbnails.standard.url;
+  }
+
   onBackClicked() {
     this.location.back();
   }
