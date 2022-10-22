@@ -1,27 +1,24 @@
-export const todayDateInSeconds = Date.parse(String(new Date()));
-export const dayInSeconds = 24 * 60 * 60 * 1000;
-export const upto7Days = todayDateInSeconds - (dayInSeconds * 7);
-export const upto1Month = todayDateInSeconds - (dayInSeconds * 30);
-export const upto6Month = todayDateInSeconds - (dayInSeconds * 30 * 6);
+export const TODAY_DATE_IN_SECONDS = Date.parse(String(new Date()));
+export const DAY_IN_SECONDS = 24 * 60 * 60 * 1000;
 
 export enum DateMarks {
-  upTo7 = upto7Days,
-  upToMonth = upto1Month,
-  upTo6Month = upto6Month,
+  UPTO_7_DAYS = TODAY_DATE_IN_SECONDS - (DAY_IN_SECONDS * 7),
+  UPTO_1_MONTH = TODAY_DATE_IN_SECONDS - (DAY_IN_SECONDS * 30),
+  UPTO_6_MONTHS = TODAY_DATE_IN_SECONDS - (DAY_IN_SECONDS * 30 * 6),
 }
 
 export function setBgColor(date: string, color: string): string {
   const postData = new Date(date);
-  if (postData <= new Date(todayDateInSeconds) && postData > new Date(DateMarks.upTo7)) {
+  if (postData <= new Date(TODAY_DATE_IN_SECONDS) && postData > new Date(DateMarks.UPTO_7_DAYS)) {
     color = 'blue';
   }    
-  if (postData <= new Date(DateMarks.upTo7) && postData > new Date(DateMarks.upToMonth)) {
+  if (postData <= new Date(DateMarks.UPTO_7_DAYS) && postData > new Date(DateMarks.UPTO_1_MONTH)) {
     color = 'green';
   } 
-  if (postData <= new Date(DateMarks.upToMonth) && postData > new Date(DateMarks.upTo6Month)) {
+  if (postData <= new Date(DateMarks.UPTO_1_MONTH) && postData > new Date(DateMarks.UPTO_6_MONTHS)) {
     color = 'yellow';
   } 
-  if (postData <= new Date(DateMarks.upTo6Month)) {
+  if (postData <= new Date(DateMarks.UPTO_6_MONTHS)) {
     color = 'red';
   }
   return color;

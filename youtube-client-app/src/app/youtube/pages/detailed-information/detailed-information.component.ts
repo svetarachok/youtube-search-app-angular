@@ -17,7 +17,7 @@ export class DetailedInformationComponent implements OnInit {
 
   hiddenDescription: string = '';
 
-  descriptionNotHidden: boolean = false;
+  isDescriptionHidden: boolean = false;
 
   color: string = '';
 
@@ -29,7 +29,6 @@ export class DetailedInformationComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit(): void {
-    
     const id = this.route.snapshot.params['id'];
     this.dataItem = this.searchService.getSearchItem(id) as SearchItemInterface;
     this.route.params.subscribe(params => this.dataItem = <SearchItemInterface> this.searchService.getSearchItem(params['id']));
@@ -45,6 +44,6 @@ export class DetailedInformationComponent implements OnInit {
   }
 
   toggleDescription() {
-    this.descriptionNotHidden = !this.descriptionNotHidden;
+    this.isDescriptionHidden = !this.isDescriptionHidden;
   }
 }

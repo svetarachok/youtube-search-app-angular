@@ -14,9 +14,9 @@
           <h2  class="data_description_header">Description:</h2>
           <p>
             <span>{{ visibleDescription }}</span>
-            <span *ngIf="descriptionNotHidden">{{ hiddenDescription }}</span>
-            <button mat-button color="primary" *ngIf="!descriptionNotHidden" (click)="toggleDescription()">...Read more</button>
-            <button mat-button color="primary" *ngIf="descriptionNotHidden" (click)="toggleDescription()">...Hide text</button>
+            <span *ngIf="isDescriptionHidden">{{ hiddenDescription }}</span>
+            <button mat-button color="primary" *ngIf="!isDescriptionHidden" (click)="toggleDescription()">...Read more</button>
+            <button mat-button color="primary" *ngIf="isDescriptionHidden" (click)="toggleDescription()">...Hide text</button>
           </p>
         </div>
         <mat-card-actions class="data_icons">
