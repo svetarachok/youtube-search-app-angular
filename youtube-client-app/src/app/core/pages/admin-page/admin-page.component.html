@@ -1,0 +1,42 @@
+<div class="admin-page">
+  <form 
+    [formGroup]="createCardForm"
+    (ngSubmit)="onSubmit(formDirective)"
+    class="admin-page_form"
+    #formDirective="ngForm">
+    <h2>Create a new card</h2>
+    <div class="admin-page_inputs-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" formControlName="title" required>
+        <mat-error *ngIf="title!.invalid">{{ getTitleErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        <mat-error *ngIf="description!.errors?.['maxlength']"> The description is too long </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Image</mat-label>
+        <input matInput placeholder="Image" formControlName="image" required>
+        <mat-error *ngIf="image!.invalid">{{ getImgeErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Link Video</mat-label>
+        <input matInput placeholder="Link Video" formControlName="link" required>
+        <mat-error *ngIf="link!.invalid">{{ getLinkVideoErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Creation date - MM/DD/YYYY</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="date!.invalid">{{ getDateErrorMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="submit">Create Card</button>
+  </form>
+  <div class="success-message" *ngIf="isCardCreated">
+    <h2> You card was created! You may vist <b><a routerLink="/search-results">Main Page</a></b> or create a new card</h2>
+  </div>
+</div>

@@ -47,6 +47,10 @@ export class DetailedInformationComponent implements OnInit {
     }
   }
 
+  get imageUrl() {
+    return this.dataItem.snippet.thumbnails.maxres ? this.dataItem.snippet.thumbnails.maxres.url : this.dataItem.snippet.thumbnails.standard.url;
+  }
+
   onBackClicked() {
     this.location.back();
   }

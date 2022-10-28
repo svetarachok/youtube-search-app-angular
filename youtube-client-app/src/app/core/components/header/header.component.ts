@@ -40,4 +40,8 @@ export class HeaderComponent {
     this.isClosed = !this.isClosed;
   }
 
+  onLogoClick() {
+    this.router.navigate(['/admin']);
+  }
+
 }
