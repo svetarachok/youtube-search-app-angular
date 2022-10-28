@@ -19,3 +19,25 @@
     padding-bottom: 1rem;
   }
 }
+
+.videos {
+  display: flex;
+  column-gap: 0.5rem;
+}
+.video-card {
+  width: 400px;
+  &_img {
+    width: inherit;
+    height: 300px;
+  }
+  &_data {
+    padding: 5% 5% 0;
+  }
+  &_description_header {
+    font-size: 1rem;
+    margin: 1rem 0 0 0;
+  }
+}
+
+
+

@@ -37,6 +37,17 @@
     <button mat-raised-button color="primary" type="submit">Create Card</button>
   </form>
   <div class="success-message" *ngIf="isCardCreated">
-    <h2> You card was created! You may vist <b><a routerLink="/search-results">Main Page</a></b> or create a new card</h2>
+    <h2> You video was created!</h2>
   </div>
+</div>
+<div class="videos" >
+  <mat-card class="video-card" *ngFor="let video of (videos | async)">
+    <img [src]="video.image" alt="Some Image" class="video-card_img">
+    <div class="video-card_data">
+      <mat-card-subtitle class="video-card_date">{{ video.date | date:'fullDate' }}</mat-card-subtitle>
+      <mat-card-title class="video-card_title">{{ video.title }}</mat-card-title>
+      <h2  class="video-card_description_header">Description:</h2>
+      <p>{{ video.description }}</p>
+    </div>
+  </mat-card>        
 </div>

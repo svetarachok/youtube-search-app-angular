@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { URL_REGEX } from '../../utils/constants';
+import { Store } from '@ngrx/store';
+import * as AdminActions from '../../store/admin.actions';
+import { CreatedVideo } from '../../models/createdVideo';
+import { getCreatedVideos } from '../../store/index';
+import { State } from '../../store/admin.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-page',
@@ -13,6 +19,10 @@ export class AdminPageComponent implements OnInit {
 
   isCardCreated: boolean = false;
 
+  videos!: Observable<CreatedVideo[]>;
+
+  constructor(private store: Store<State>) {}
+
   ngOnInit() {
     this.createCardForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
@@ -21,6 +31,7 @@ export class AdminPageComponent implements OnInit {
       link: new FormControl('', [Validators.required, Validators.pattern(`${URL_REGEX}`)]),
       date: new FormControl('', [Validators.required, this.dateValidador]),
     });
+    this.videos = this.store.select(getCreatedVideos);
   }
 
   get title() {
@@ -46,6 +57,9 @@ export class AdminPageComponent implements OnInit {
   onSubmit(formDirective: FormGroupDirective) {
     if (this.createCardForm.valid) {
       this.isCardCreated = true;
+      const video: CreatedVideo = { title: this.title?.value, description: this.description?.value, image: this.image?.value, link: this.link?.value, date: this.date?.value };
+      this.store.dispatch(AdminActions.adminAddVideo(video));
+      this.videos = this.store.select(getCreatedVideos);
       this.createCardForm.reset();
       formDirective.resetForm();
     }

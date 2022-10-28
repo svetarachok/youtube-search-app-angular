@@ -7,8 +7,9 @@ export enum DateMarks {
   UPTO_6_MONTHS = TODAY_DATE_IN_SECONDS - (DAY_IN_SECONDS * 30 * 6),
 }
 
-export function setBgColor(date: string, color: string): string {
+export function setBgColor(date: string): string {
   const postData = new Date(date);
+  let color: string = '';
   if (postData <= new Date(TODAY_DATE_IN_SECONDS) && postData > new Date(DateMarks.UPTO_7_DAYS)) {
     color = 'blue';
   }    

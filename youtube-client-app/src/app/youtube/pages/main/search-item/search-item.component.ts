@@ -18,7 +18,7 @@ export class SearchItemComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.color = setBgColor(this.searchItem.snippet.publishedAt, this.color);
+    this.color = setBgColor(this.searchItem.snippet.publishedAt);
     this.dislikesCount = Math.round(+this.searchItem.statistics.likeCount * Math.random() / 100);
   }
 
