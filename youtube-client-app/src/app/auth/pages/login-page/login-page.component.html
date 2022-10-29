@@ -5,7 +5,7 @@
       <mat-form-field appearance="fill">
         <mat-label>login</mat-label>
         <input matInput placeholder="login" formControlName="login" required>
-        <mat-error *ngIf="login!.invalid">{{ getLoginErrorMessage() }}</mat-error>
+        <mat-error *ngIf="login!.invalid">{{ LoginErrorMessage }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>password</mat-label>
@@ -14,7 +14,7 @@
           <mat-icon>{{isHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
-      <mat-error *ngIf="password!.invalid" class="password-error">{{ getPasswordErrorMessage() }}</mat-error>
+      <mat-error *ngIf="password!.invalid" class="password-error">{{ PasswordErrorMessage }}</mat-error>
     </div>
     <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>

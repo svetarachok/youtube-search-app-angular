@@ -6,14 +6,14 @@ import { CreatedVideo } from '../models/createdVideo';
 
 
 export interface State {
-  newVideos: CreatedVideo[];
+  createdVideos: CreatedVideo[];
 }
 
 const initialState: State = {
-  newVideos: [], 
+  createdVideos: [], 
 };
 
 export const adminReducer = createReducer(
   initialState,
-  on(AdminActions.adminAddVideo, (state, data) => ({ ... state, newVideos: [...state.newVideos, data] })),
+  on(AdminActions.adminAddVideo, (state, data) => ({ ... state, createdVideos: [...state.createdVideos, data] })),
 );

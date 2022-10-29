@@ -7,6 +7,7 @@ import { CreatedVideo } from '../../models/createdVideo';
 import { getCreatedVideos } from '../../store/index';
 import { State } from '../../store/admin.reducer';
 import { Observable } from 'rxjs';
+import { FormErrors } from '../../models/form-errors-enum';
 
 @Component({
   selector: 'app-admin-page',
@@ -19,7 +20,7 @@ export class AdminPageComponent implements OnInit {
 
   isCardCreated: boolean = false;
 
-  videos!: Observable<CreatedVideo[]>;
+  videos$!: Observable<CreatedVideo[]>;
 
   constructor(private store: Store<State>) {}
 
@@ -31,7 +32,7 @@ export class AdminPageComponent implements OnInit {
       link: new FormControl('', [Validators.required, Validators.pattern(`${URL_REGEX}`)]),
       date: new FormControl('', [Validators.required, this.dateValidador]),
     });
-    this.videos = this.store.select(getCreatedVideos);
+    this.videos$ = this.store.select(getCreatedVideos);
   }
 
   get title() {
@@ -59,43 +60,43 @@ export class AdminPageComponent implements OnInit {
       this.isCardCreated = true;
       const video: CreatedVideo = { title: this.title?.value, description: this.description?.value, image: this.image?.value, link: this.link?.value, date: this.date?.value };
       this.store.dispatch(AdminActions.adminAddVideo(video));
-      this.videos = this.store.select(getCreatedVideos);
+      this.videos$ = this.store.select(getCreatedVideos);
       this.createCardForm.reset();
       formDirective.resetForm();
     }
   }
 
-  getTitleErrorMessage() {
+  get TitleErrorMessage() {
     if (this.title?.hasError('required')) {
-      return 'Please enter a title';
+      return FormErrors.TITLE_REQUIRED;
     }
     if (this.title?.hasError('minlength')) {
-      return 'The title is too short';
+      return FormErrors.TITLE_MIN_LENGTH;
     }
-    return this.title?.hasError('maxlength') ? 'The title is too long' : '';
+    return this.title?.hasError('maxlength') ? FormErrors.TITLE_MAX_LANGTH : '';
   }
 
-  getImgeErrorMessage() {
+  get ImgeErrorMessage() {
     if (this.image?.hasError('required')) {
-      return 'Please enter a link to the video';
+      return FormErrors.IMAGE_LINK_REQUIRED;
     }
-    return this.image?.hasError('pattern') ? 'The image link is invalid' : '';
+    return this.image?.hasError('pattern') ? FormErrors.LINK_INVALID : '';
   }
 
-  getLinkVideoErrorMessage() {
+  get LinkVideoErrorMessage() {
     if (this.link?.hasError('required')) {
-      return 'Please enter a link to the video';
+      return FormErrors.VIDEO_LINK_REQUIRED;
     }
-    return this.link?.hasError('pattern') ? 'The video link is invalid' : '';
+    return this.link?.hasError('pattern') ? FormErrors.LINK_INVALID : '';
   }
 
-  getDateErrorMessage() {
+  get DateErrorMessage() {
     
     if (this.date?.hasError('required')) {
-      return 'Please enter a creation date';
+      return FormErrors.DATE_REQUIRED;
     } 
     if (this.date!.hasError('dateValid') ) {
-      return 'The date is invalid';
+      return FormErrors.DATE_INVALID;
     }
   }
 

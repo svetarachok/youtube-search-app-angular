@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/youtube/services/local-storage/local-storage.service';
 import { AuthService } from '../../services/auth-service/auth.service';
+import { FormErrors } from 'src/app/core/models/form-errors-enum';
 
 @Component({
   selector: 'app-login-page',
@@ -50,19 +51,18 @@ export class LoginPageComponent implements OnInit {
     this.isHidden = !this.isHidden;
   }
 
-  getLoginErrorMessage() {
+  get LoginErrorMessage() {
     if (this.login!.hasError('required')) {
-      return 'Please enter a login email';
+      return FormErrors.EMAIL_REQUIRED;
     } 
-    return this.login!.hasError('email') ? 'The login email is invalid' : '';
+    return this.login!.hasError('email') ? FormErrors.EMAIL_INVALID : '';
   }
 
-  getPasswordErrorMessage() {
+  get PasswordErrorMessage() {
     if (this.password!.hasError('required') && this.password?.touched) {
-      return 'Please enter a password';
+      return FormErrors.PASSWORD_REQUIRED;
     } else if (this.password!.hasError('passwordInvalid') && this.password?.touched) {
-      const message = 'Your password isn\'t strong enough. It should contain at least 8 characters, both uppercase and lowercase letters, numbers and at least one special character, e.g., ! @ # ? ]';      
-      return message;
+      return FormErrors.PASSWORD_INVALID;
     } 
   }
 

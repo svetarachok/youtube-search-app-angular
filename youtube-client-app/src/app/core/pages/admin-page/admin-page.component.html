@@ -9,7 +9,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
         <input matInput placeholder="Title" formControlName="title" required>
-        <mat-error *ngIf="title!.invalid">{{ getTitleErrorMessage() }}</mat-error>
+        <mat-error *ngIf="title!.invalid">{{ TitleErrorMessage }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
@@ -19,19 +19,19 @@
       <mat-form-field appearance="fill">
         <mat-label>Image</mat-label>
         <input matInput placeholder="Image" formControlName="image" required>
-        <mat-error *ngIf="image!.invalid">{{ getImgeErrorMessage() }}</mat-error>
+        <mat-error *ngIf="image!.invalid">{{ ImgeErrorMessage }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Link Video</mat-label>
         <input matInput placeholder="Link Video" formControlName="link" required>
-        <mat-error *ngIf="link!.invalid">{{ getLinkVideoErrorMessage() }}</mat-error>
+        <mat-error *ngIf="link!.invalid">{{ LinkVideoErrorMessage }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Creation date - MM/DD/YYYY</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="date!.invalid">{{ getDateErrorMessage() }}</mat-error>
+        <mat-error *ngIf="date!.invalid">{{ DateErrorMessage }}</mat-error>
       </mat-form-field>
     </div>
     <button mat-raised-button color="primary" type="submit">Create Card</button>
@@ -41,7 +41,7 @@
   </div>
 </div>
 <div class="videos" >
-  <mat-card class="video-card" *ngFor="let video of (videos | async)">
+  <mat-card class="video-card" *ngFor="let video of (videos$ | async)">
     <img [src]="video.image" alt="Some Image" class="video-card_img">
     <div class="video-card_data">
       <mat-card-subtitle class="video-card_date">{{ video.date | date:'fullDate' }}</mat-card-subtitle>

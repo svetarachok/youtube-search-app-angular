@@ -7,5 +7,5 @@ export const createdVideosSelector =
 
 export const getCreatedVideos = createSelector(
   createdVideosSelector,
-  (videos) => videos.newVideos,
+  (videos) => videos.createdVideos,
 );
