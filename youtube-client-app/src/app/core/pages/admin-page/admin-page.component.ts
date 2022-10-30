@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { URL_REGEX } from '../../utils/constants';
-import { Store } from '@ngrx/store';
 import * as AdminActions from '../../store/admin.actions';
 import { CreatedVideo } from '../../models/createdVideo';
-import { getCreatedVideos } from '../../store/index';
-import { State } from '../../store/admin.reducer';
 import { Observable } from 'rxjs';
 import { FormErrors } from '../../models/form-errors-enum';
+
+import { Store } from '@ngrx/store';
+import { getCreatedVideos } from '../../store/index';
+import { State } from '../../store/admin.reducer';
 
 @Component({
   selector: 'app-admin-page',

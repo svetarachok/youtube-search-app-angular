@@ -12,7 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './core/services/http-interceptors';
 import { adminReducer } from './core/store/admin.reducer';
+import { youtubeSearchReducer } from './youtube/store/youtube-search-reducer';
 import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { VideoSearchEffects } from './youtube/store/effects/video-search.effect';
  
 @NgModule({
   declarations: [
@@ -24,7 +27,11 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     AppRoutingModule,
     CoreModule,
-    StoreModule.forRoot({ admin: adminReducer }),
+    StoreModule.forRoot({ 
+      admin: adminReducer, 
+      youtubeSearch: youtubeSearchReducer, 
+    }),
+    EffectsModule.forRoot([VideoSearchEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
     MaterialModule,
     HttpClientModule,

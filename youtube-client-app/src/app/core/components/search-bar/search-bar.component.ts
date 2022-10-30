@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SearchService } from 'src/app/youtube/services/search-service/search.service';
+import { SearchState } from 'src/app/youtube/store/youtube-search-reducer';
 
+import { Store } from '@ngrx/store';
+import * as YoutubeSearchActions from '../../../youtube/store/youtube-search.actions';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -12,7 +15,7 @@ import { SearchService } from 'src/app/youtube/services/search-service/search.se
 export class SearchBarComponent implements OnInit {
   public searchData$ = new Subject<string>();
 
-  constructor(private searchService: SearchService, private router: Router, private route: ActivatedRoute) {
+  constructor(private searchService: SearchService, private router: Router, private store: Store<SearchState>) {
   }
 
   ngOnInit() {
@@ -23,7 +26,8 @@ export class SearchBarComponent implements OnInit {
         distinctUntilChanged(),
       )
       .subscribe((data) => {
-        this.searchService.searchData(data);
+        // YoutubeSearchActions.clearStore();
+        this.store.dispatch(YoutubeSearchActions.getSearchRequest({ searchRequest: data }));
       });
   }
 

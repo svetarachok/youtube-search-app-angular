@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { SearchItemInterface } from '../../models/search-item.model';
 import { SearchResults } from '../../models/search-results.model';
 
@@ -29,37 +29,26 @@ export class SearchService {
     })
       .pipe(
         map(data => {
-          const arr = [];
           for (const key of data.items) {
             if ( typeof key.id === 'object') {
-              arr.push(key.id.videoId);
+              this.idsArray.push(key.id.videoId);
             }
           }
-          return arr;
+        }),
+        switchMap(() => {
+          const dataIds = this.idsArray.join(',');
+          let params2 = this.getVideoParams(dataIds);
+          return this.http.get<SearchResults>(
+            '/videos',
+            {
+              params: params2,
+            });
         }),
       );
-  }
-  
-  searchData(value: string) {
-    this.getDataFromSearchList(value)
-      .subscribe( data => {
-        this.idsArray = data;
-        const dataIds = this.idsArray.join(',');
-        let params = this.getVideoParams(dataIds);
-        this.http.get<SearchResults>(
-          '/videos',
-          {
-            params: params,
-          })
-          .pipe(
-            map( videos => {
-              return videos.items;
-            }),
-          ).subscribe( items => {        
-            this.filteredData.next(items);
-            this.sortedData = this.filteredData.value;
-          });
-      });
+    // .subscribe( items => {        
+    //   this.filteredData.next(items);
+    //   this.sortedData = this.filteredData.value;
+    // });
   }
 
   getSearchItem(id: string): Observable<SearchItemInterface> {
