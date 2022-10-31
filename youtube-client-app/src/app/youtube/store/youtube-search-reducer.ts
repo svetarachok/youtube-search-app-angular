@@ -18,5 +18,4 @@ export const youtubeSearchReducer = createReducer(
   initialState,
   on(YoutubeSearchActions.getSearchRequest, (state, { searchRequest }) => ({ ... state, searchRequest: searchRequest })),
   on(YoutubeSearchActions.getVideos, (state, { searchResults } ) => ({ ...state, searchResults: searchResults })),
-  on(YoutubeSearchActions.clearStore, (state) => ({ ...state, searchResults: initialState.searchResults })),
 );

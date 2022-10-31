@@ -17,7 +17,6 @@ export class VideoSearchEffects {
         return this.searchService.getDataFromSearchList(action.searchRequest)
           .pipe(
             map(videos => {
-              console.log(videos.items);
               return YoutubeSearchActions.getVideos({ searchResults: videos.items });
             }),
           );

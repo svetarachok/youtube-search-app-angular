@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { SearchService } from 'src/app/youtube/services/search-service/search.service';
-import { SearchState } from '../../store/youtube-search-reducer';
 
 @Component({
   selector: 'app-search-results',
@@ -18,6 +16,6 @@ export class SearchResultsComponent {
     return this.searchService.filteredData.value;
   }
 
-  constructor(private searchService: SearchService, private store: Store<SearchState>) {}
+  constructor(private searchService: SearchService) {}
 
 }
