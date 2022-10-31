@@ -1,9 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { SearchItemInterface } from '../../models/search-item.model';
 import { SearchResults } from '../../models/search-results.model';
+import { getSearchResults } from '../../store';
+import { SearchState } from '../../store/youtube-search-reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +23,15 @@ export class SearchService {
 
   idsArray: string[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store<SearchState>) {
+    this.store.select(getSearchResults).subscribe( items => {   
+      this.filteredData.next([...items]);
+      this.sortedData = this.filteredData.value;
+    });
+  }
 
-  getDataFromSearchList(value: string) {
+  getDataFromSearchList(value: string): Observable<SearchResults> {
+    this.idsArray = [];
     let params = this.getSerachParams(value);
     return this.http.get<SearchResults>('/search', {
       params: params,
@@ -45,10 +54,6 @@ export class SearchService {
             });
         }),
       );
-    // .subscribe( items => {        
-    //   this.filteredData.next(items);
-    //   this.sortedData = this.filteredData.value;
-    // });
   }
 
   getSearchItem(id: string): Observable<SearchItemInterface> {
@@ -67,7 +72,7 @@ export class SearchService {
     this.filteredData = new BehaviorSubject(this.data);
   }
 
-  sortByDate(ascending: boolean) {
+  sortByDate(ascending: boolean): void {
     if (ascending) {
       this.filteredData.value.sort((a, b) => Date.parse(a.snippet.publishedAt) - Date.parse(b.snippet.publishedAt));
     } else {
@@ -75,7 +80,7 @@ export class SearchService {
     }
   }
 
-  sortByViewCount(ascending: boolean) {
+  sortByViewCount(ascending: boolean): void {
     if (ascending) {
       this.filteredData.value.sort((a, b) => Number(a.statistics.viewCount) - Number(b.statistics.viewCount));
     } else {
@@ -83,7 +88,7 @@ export class SearchService {
     }
   }
   
-  searchByInput(input: string) {
+  searchByInput(input: string): void {
     this.filteredData.next(this.sortedData.filter((searchRes) => {
       const searchList = searchRes.snippet.title.toLowerCase();
       return searchList.includes(input.toLowerCase());

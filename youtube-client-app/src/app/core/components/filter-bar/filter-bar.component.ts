@@ -15,17 +15,17 @@ export class FilterBarComponent {
 
   }
 
-  sortByDate() {
+  sortByDate(): void {
     this.ascendingDate = !this.ascendingDate;
     this.searchService.sortByDate(this.ascendingDate);
   }
 
-  sortByViews() {
+  sortByViews(): void {
     this.ascendingViews = !this.ascendingViews;
     this.searchService.sortByViewCount(this.ascendingViews);
   }
 
-  searchByInput(input: string) {
+  searchByInput(input: string): void {
     this.searchService.searchByInput(input);
   }
 }

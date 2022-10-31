@@ -4,7 +4,7 @@
   </ng-template>
   <div class="search-items" *ngIf="isSearchStarted; else searchText">
     <app-search-item
-    *ngFor="let result of (searchedVideos | async)" 
+    *ngFor="let result of searchedVideos" 
     [searchItem]="result"
     ></app-search-item>
   </div>
